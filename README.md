@@ -49,8 +49,17 @@ Claude Code                         Cursor
 4. 仕様変更が必要なときCursorは勝手に方針を変えず、`STATUS.md` に「要相談」と書いて止める。
 5. Claude Codeは `STATUS.md` を読み、`TASKS.md` を更新して次サイクルへ。
 
+### Slack通知ルール（スマホで気づくため・必須）
+担当（Claude Code / Cursor）は、次のとき **Slack `#omochi_デプロイ`（channel `C0BC2U81Z6E` / workspace `ai-qdj7230`）** に投稿する：
+- 🔴 `DECISIONS.md` に「要承認」を追記したとき → 要点＋GitHub全文リンク
+- 📊 `STATUS.md` に「完了」「要相談」を追記したとき → タスクID＋一言
+- ⚠️ 作業を止めて社長の判断を待つとき
+
+投稿はSlack連携（MCP/incoming webhook）経由。**Slackに投稿できない環境（VPS等）の場合は、`STATUS.md` に `[要Slack通知]` と明記し、Claude Codeが次サイクルで代理投稿する。**
+お金が動く操作・CW返信送信などは「通知で知らせる」だけで、実行は社長の手（不変ルール）。
+
 ### Cursorへの初期プロンプト（コピペ用）
-> このリポジトリの `handoff/TASKS.md` を上から実行してください。各タスクの仕様は `handoff/SPEC_*.md` にあります。実装は `src/` に置き、進捗・完了・詰まりは `handoff/STATUS.md` にタスクID付きで追記してください。費用が発生する・破壊的・方針に関わる判断が必要な場合は実装を止めて `handoff/STATUS.md` に「要相談」と書いてください。
+> このリポジトリの `handoff/TASKS.md` を上から実行してください。仕様は `handoff/SPEC_*.md`。実装は `src/`、進捗・完了・詰まりは `handoff/STATUS.md` にタスクID付きで追記。費用発生・破壊的・方針判断が必要な時は止めて `handoff/STATUS.md` に「要相談」と書く。**重要な報告・要承認・要相談は Slack `#omochi_デプロイ` にも投稿**（投稿できなければ STATUS.md に `[要Slack通知]` と明記）。
 
 ---
 
