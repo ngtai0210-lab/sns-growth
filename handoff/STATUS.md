@@ -5,6 +5,8 @@
 
 ---
 
+[2026-06-22] 環境整備 完了（Cowork）— Claude Code基盤を整備。`CLAUDE.md`（運用ルール）と `.claude/settings.json`（権限ガードレール：`git push --force`/`reset --hard`/`filter-branch`/`.env`読込を deny、commit/push/`autopost`(実投稿)/notify-slack を ask）を追加。`.gitignore` に `.claude/settings.local.json` を追加（個人設定は共有しない）。スラッシュコマンド `/status` `/plan` `/review` `/sns` と読み取り専用サブエージェント `reviewer` を追加。旧フォルダ（OneDrive側）の危険な許可（force push・filter-branch）を削除。linkpageの商品URLは実URL設定済みを確認（T-004の「`#`プレースホルダ」は解消済み）。**残：`.env` に `ANTHROPIC_API_KEY`／`THREADS_USER_ID`／`THREADS_ACCESS_TOKEN` を設定すると実生成・実投稿が有効化**。
+
 [2026-06-22] CW通知 実装完了（AJ）— VPS `/root/aio-os/scripts/cw/` にSlack通知モジュール一式（notify_slack/notify_events/cli/watcher、cron 10分毎・送信なし通知のみ）。**残：社長がVPSの `/root/aio-os/.env` に `SLACK_WEBHOOK_URL` を設定→`cli.py test`で疎通確認／CW手動ログイン後 `save_session.py`（2FA）で返信監視を有効化**。既存スレッド返信の自動送信は不実装（ルール遵守）。
 
 [2026-06-22] ops 完了 — Slack自動通知を**完全自動化**。post-commitフック（`scripts/git-hooks/post-commit`）を有効化し、`handoff/STATUS.md`／`DECISIONS.md` を含むコミットで**自動的に #omochi_デプロイ へ通知**（Claude Code / Cursor 共通・手動呼び出し不要）。VPSでの有効化は `git config core.hooksPath scripts/git-hooks` を1回実行。
