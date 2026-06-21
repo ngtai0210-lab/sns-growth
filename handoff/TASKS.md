@@ -47,6 +47,12 @@
 - 前提：Threads公式APIトークン取得（人手・無料）＋ウォームアップ完了（D-010）。
 - 効果：Threadsが「**完全無料で完全自動**」になる。Xは無料自動化不可のため対象外（D-002）。VPS不要（D-007回避）。
 
+## T-008 [ ] Cursor/VPSからSlackリアルタイム通知
+- 仕様：`SPEC_slack-notify.md`／スクリプト：`scripts/notify-slack.sh`（作成済み）
+- ゴール：STATUS/DECISIONS更新・要相談・停止のたびに `notify-slack.sh "メッセージ"` を呼び、`#omochi_デプロイ` へ投稿。
+- 前提：社長がSlack Incoming Webhookを発行し `.env` の `SLACK_WEBHOOK_URL` に設定（→設定後に有効化）。
+- 未設定の間は STATUS.md に `[要Slack通知]` と書き、Claude Codeが代理投稿（フォールバック）。
+
 ---
 
 ## バックログ（P1以降）
